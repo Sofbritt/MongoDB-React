@@ -1,0 +1,97 @@
+/* .App {
+  text-align: center;
+} */
+
+body {
+  background-color: rgb(255, 249, 239);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choose {
+  width: 900px;
+  height: 200px;
+  border: none;
+  background-color: rgb(229, 231, 231);
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20%;
+}
+
+.choose:hover {
+  border: 1px solid black;
+}
+
+.label {
+  color: rgb(124, 112, 112);
+}
+
+
+
+.checkbox {
+  display: flex;
+}
+
+.second-checkbox {
+
+  margin-top: 21px;
+}
+
+.posters {
+  height: 210px;
+}
+
+.but {
+  background-color: orange;
+  width: 140px;
+  height: 30px;
+  border: none;
+  border-radius: 20px;
+}
+
+.gray {
+  color: gray;
+  font-size: 15px;
+}
+
+.films {
+
+  background-color: #eff3f8;
+  margin: 0;
+  padding: 50px;
+  padding-top: 70px;
+  height: 100%;
+  align-items: flex-start ;
+  flex-wrap: wrap;
+}
+
+.aboutmovie{
+  width: 250px;
+}
+
+
+
+/* all-movies css */
+
+.all-films {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+
+}
+
+.link{
+  color: rgb(47, 122, 141);
+  text-decoration: none;
+}
+
+
+.form{
+  width: 180px;
+  background-color: rgb(190, 212, 228);
+}
