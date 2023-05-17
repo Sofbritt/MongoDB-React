@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const genreSchema=new mongoose.Schema({
-    genreName:String,
+const genreSchema = new mongoose.Schema({
+    genreName: String,
 
 })
 
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
 
 })
 
-module.exports ={
-    Movie:mongoose.model('Movie', userSchema),
-    Genre:mongoose.model('Genre', genreSchema),
+module.exports = {
+    Movie: mongoose.model('Movie', userSchema),
+    Genre: mongoose.model('Genre', genreSchema),
 } 

@@ -11,7 +11,28 @@ function AllMovies() {
     //   }
 
     const [data, setData] = useState([])
-   
+    const [input, setInput] = useState('')
+    const [country, setCountry] = useState('')
+    const [genre, setGenre] = useState([])
+    const [year, setYear] = useState('')
+    const [rating, setRating] = useState('')
+
+
+
+
+    let filter = () => {
+        let query = ''
+        query += 'type=' + input
+        query += '&country=' + country
+        query += '&genre=' + genre
+        query += '&year=' + year
+        query += '&rating=' + rating
+
+        console.log(query)
+
+        axios.get('http://localhost:4500/movies?' + query).then((response) => setData(response.data))
+    }
+
 
     useEffect(() => {
 
@@ -19,7 +40,7 @@ function AllMovies() {
 
     }, [])
 
-    console.log(data)
+
     return (
 
         <div>
@@ -29,38 +50,40 @@ function AllMovies() {
             <div className='choose'>
                 <div className='options'>
                     <label className='label'>choose a genre</label> <br />
-                    <select className='genre'>
-                        <option value="choose a genre">Drama</option>
-                        <option value="choose a genre">Thriller</option>
-                        <option value="choose a genre">Biography</option>
-                        <option value="choose a genre">Documentary</option>
-                        <option value="choose a genre">Comedy</option>
-                        <option value="choose a genre">Horror</option>
-                        <option value="choose a genre">Detective</option>
-                        <option value="choose a genre">Action</option>
-                        <option value="choose a genre">Romantic Comedy</option>
-                        <option value="choose a genre">Crime Film</option>
+                    <select className='genre' onChange={(e) => setGenre(e.target.value)}>
+                        <option value="choose a genre">Choose The Genre</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Documentary">Documentary</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Action">Action</option>
+                        <option value="Romantic Comedy">Romantic Comedy</option>
+                        <option value="Crime Film">Crime Film</option>
                     </select>  <br />
 
-                    <label className='label'>Choose Your Country</label> <br />
-                    <select className='country'>
-                        <option value="1">USA</option>
-                        <option value="2">Aremenia</option>
-                        <option value="3">Spain</option>
-                        <option value="4">Italy</option>
-                        <option value="5">Brazil</option>
-                        <option value="6">France</option>
-                        <option value="7">Moldova</option>
-                        <option value="8">Denmark</option>
-                        <option value="9">Egypt</option>
-                        <option value="10">Latvia</option>
+                    <label className='label'>Choose The Country</label> <br />
+                    <select className='country' onChange={(e) => setCountry(e.target.value)}>
+                        <option value="choose country">Choose The Country</option>
+                        <option value="USA">USA</option>
+                        <option value="Aremenia">Armenia</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="France">France</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="Latvia">Latvia</option>
                     </select>
                 </div>
                 <div className='range'>
                     <label className='label'>Choose a year</label> <br />
-                    <input className='year-inp' type='range' /> <br />
+                    <input className='year-inp' type='range' name='range' min='1990' max="2023" onChange={(e) => setYear(e.target.value)} /> {year} <br />
                     <label className='label'>Choose rating for your film</label> <br />
-                    <input className='rating-inp' type='range' /> <br />
+                    <input className='rating-inp' type='range' name='range' min='1' max='10' onChange={(e) => setRating(e.target.value)} /> {rating} <br />
                 </div>
 
 
@@ -68,20 +91,20 @@ function AllMovies() {
                     <div className='first-checkbox'>
 
                         <label className='label'>Setting of searching</label> <br />
-                        <input className='movie-checkbox' type='checkbox' />
+                        <input className='movie-checkbox' type='radio' name='radio' onChange={(e) => setInput('film')} />
                         <label className='label'>Movies</label> <br />
-                        <input className='cartoon' type='checkbox' />
+                        <input className='cartoon' type='radio' name='radio' onChange={(e) => setInput('cartoon')} />
                         <label className='label'>Cartoons</label>
 
                     </div>
 
                     <div className='second-checkbox'>
-                        <input className='series' type='checkbox' />
+                        <input className='series' type='radio' name='radio' onChange={(e) => setInput('series')} />
                         <label className='label'>Series</label> <br />
-                        <input className='anime' type='checkbox' />
+                        <input className='anime' type='radio' name='radio' onChange={(e) => setInput('anime')} />
                         <label className='label'>Anime</label> <br />
 
-                        <button className='but'>Search</button>  <br /> <br />
+                        <button className='but' onClick={filter}>Search</button>  <br /> <br />
                         <button className='but'>Clean</button>
 
                     </div>

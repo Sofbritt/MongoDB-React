@@ -18,14 +18,15 @@ app.use(cors({
 
 
 // const movie = new Movie({
-//     movieName: 'AMERICAN PSYCHO',
-//     year: 2000,
-//     rating: 9,
-//     type: 'film',
-//     img: "https://upload.wikimedia.org/wikipedia/ru/thumb/9/9e/American-psycho-poster-0.jpg/202px-American-psycho-poster-0.jpg",
-//     actors: ['Cristian Bale','Jared Leto','Reese Witherspoon'],
-//     producer: ['Mary Harron'],
-//     genre: [Genre.findById('6454eb3d67ba7368633115f6','645521a9b28233ae6f635cbd')]
+//     movieName: 'Coctail',
+//     country: 'USA',
+//     year: 1988,
+//     rating: 10,
+//     type: 'Film',
+//     img: "https://upload.wikimedia.org/wikipedia/ru/thumb/4/40/%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D0%BA_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D1%83_%D0%9A%D0%BE%D0%BA%D1%82%D0%B5%D0%B9%D0%BB%D1%8C.jpg/205px-%D0%9F%D0%BE%D1%81%D1%82%D0%B5%D1%80_%D0%BA_%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%D1%83_%D0%9A%D0%BE%D0%BA%D1%82%D0%B5%D0%B9%D0%BB%D1%8C.jpg",
+//     actors: ['Tom Cruise', 'Cameron Diaz'],
+//     producer: ['Rodjer  Donaldson']
+//     // genre: [Genre.findById('6454eb3d67ba7368633115f6')]
 // })
 
 // movie.save()
@@ -44,12 +45,34 @@ app.get('/movies/:id', async (req, res) => {
 
 app.get('/movies', async (req, res) => {
     try {
+        let obj = {
 
-        const movies = await Movie.find(req.query);
+        }
+        if (req.query.type) {
+            obj.type = req.query.type
+        }
+        if (req.query.country) {
+            obj.country = req.query.country
+        }
+
+
+        if (req.query.genre) {
+            obj.genre = req.query.genre
+        }
+
+        if (req.query.year) {
+            obj.year = { $gte: + req.query.year }
+        }
+
+        if (req.query.rating) {
+            obg.rating =  req.query.rating 
+        }
+        console.log(req.query)
+
+        const movies = await Movie.find(obj);
         // const movies = await Movie.find()//.select({ img: 1, movieName: 1, year: 1 })
-
-
         res.json(movies)
+
     } catch (e) {
 
         res.json({ message: e.message })
@@ -92,9 +115,9 @@ app.post('/movieCreate', async (req, res) => {
 
 app.put('/movieUpdate/:id', async (req, res) => {
     try {
-        const movie = await Movie.findByIdAndUpdate(req.params.id, req.body)
+        const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true })
 
-        res.status(200).json({ message: 'success' })
+        res.status(200).json(movie)
 
     } catch (e) {
         res.status(400).json({ message: e.message })
