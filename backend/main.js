@@ -65,7 +65,7 @@ app.get('/movies', async (req, res) => {
         }
 
         if (req.query.rating) {
-            obg.rating =  req.query.rating 
+            obj.rating = req.query.rating
         }
         console.log(req.query)
 

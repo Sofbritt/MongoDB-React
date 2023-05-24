@@ -11,6 +11,7 @@ function AllMovies() {
     //   }
 
     const [data, setData] = useState([])
+    const [genres, setAllGenres] = useState([])
     const [input, setInput] = useState('')
     const [country, setCountry] = useState('')
     const [genre, setGenre] = useState([])
@@ -35,7 +36,7 @@ function AllMovies() {
 
 
     useEffect(() => {
-
+        axios.get('http://localhost:4500/genres').then((response) => setGenre(response.data))
         axios.get('http://localhost:4500/movies').then((response) => setData(response.data))
 
     }, [])
@@ -50,18 +51,11 @@ function AllMovies() {
             <div className='choose'>
                 <div className='options'>
                     <label className='label'>choose a genre</label> <br />
-                    <select className='genre' onChange={(e) => setGenre(e.target.value)}>
+                    <select className='genre' onChange={(e) => setAllGenres(e.target.value)}>
                         <option value="choose a genre">Choose The Genre</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Thriller">Thriller</option>
-                        <option value="Biography">Biography</option>
-                        <option value="Documentary">Documentary</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Action">Action</option>
-                        <option value="Romantic Comedy">Romantic Comedy</option>
-                        <option value="Crime Film">Crime Film</option>
+                        {genres.map((item) => (
+                            <option key={item._id} value={item._id}>{item.genreName} </option>
+                        ))}
                     </select>  <br />
 
                     <label className='label'>Choose The Country</label> <br />

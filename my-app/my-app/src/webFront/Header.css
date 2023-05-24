@@ -1,0 +1,68 @@
+body {
+    background-color: pink;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    gap: 20px;
+    background-color: rgb(255, 243, 250);
+    box-shadow: -2px 7px 14px -4px rgba(0, 0, 0, 0.65);
+
+}
+
+.logo {
+    width: 120px;
+    height: 70px;
+}
+
+.search-inp {
+    width: 300px;
+    height: 45px;
+    border-radius: 25px;
+    border: none;
+    gap: 20px;
+
+}
+
+.search-icon {
+    width: 90px;
+    height: 25px;
+}
+
+.menu:hover {
+    color: rgb(207, 27, 132);
+}
+
+.basket-icon {
+    width: 90px;
+    height: 25px;
+}
+
+.sign-in {
+    width: 100px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(236, 178, 198);
+    font-size: medium;
+}
+
+.choose-language {
+    width: 60px;
+    height: 25px;
+    background-color: rgb(159, 186, 212);
+    border: none;
+    font-size: medium;
+}
+
+
+
+.carousel {
+    width: 900px;
+    height: 500px;
+    margin-left: 10%;
+}
